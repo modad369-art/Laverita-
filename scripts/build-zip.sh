@@ -11,6 +11,15 @@ zip -q -r "$archive" \
   collection.html \
   bespoke.html \
   assets \
+  깃허브1.png \
+  깃허브2.png \
+  깃허브3.jpg \
+  깃허브4.jpg \
+  깃허브5.jpg \
+  깃허브6.jpg \
+  깃허브7.jpg \
+  깃허브8.jpg \
+  퍼플작품.jpg \
   WINDOWS-START.txt
 
 echo "완료: $archive"
