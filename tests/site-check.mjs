@@ -3,6 +3,9 @@ import { dirname, resolve } from "node:path";
 
 const pages = ["index.html", "brand.html", "collection.html", "bespoke.html"];
 const requiredLinks = pages;
+const collectionImages = Array.from({ length: 8 }, (_, index) =>
+  `깃허브${index + 1}.${index < 2 ? "png" : "jpg"}`,
+);
 
 for (const page of pages) {
   if (!existsSync(page)) throw new Error(`${page} 파일이 없습니다.`);
@@ -37,6 +40,18 @@ for (const page of pages) {
     if (!existsSync(localPath))
       throw new Error(`${page}에서 참조하는 ${target} 파일이 없습니다.`);
   }
+}
+
+const collectionHtml = readFileSync("collection.html", "utf8");
+for (const image of collectionImages) {
+  if (!collectionHtml.includes(`src="${image}"`))
+    throw new Error(`collection.html에서 ${image} 이미지를 사용하지 않습니다.`);
+}
+
+const zipScript = readFileSync("scripts/build-zip.sh", "utf8");
+for (const image of [...collectionImages, "퍼플작품.jpg"]) {
+  if (!zipScript.includes(image))
+    throw new Error(`ZIP 생성 스크립트에 ${image} 파일이 없습니다.`);
 }
 
 const css = readFileSync("assets/css/style.css", "utf8");

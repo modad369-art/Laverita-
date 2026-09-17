@@ -401,17 +401,42 @@ p {
   border: 1px solid var(--line);
   background: var(--paper);
 }
-.designer-monogram {
+.brand-seal {
   display: grid;
   place-items: center;
-  width: 120px;
-  height: 120px;
+  align-content: center;
+  width: min(100%, 250px);
+  aspect-ratio: 1;
   margin-bottom: 60px;
-  border: 1px solid var(--gold);
+  border: 2px solid var(--gold);
   border-radius: 50%;
+  background: var(--ivory);
   color: var(--gold);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 2rem;
+  line-height: 1;
+  text-align: center;
+}
+.brand-seal::before,
+.brand-seal::after {
+  content: "";
+  width: 38%;
+  height: 1px;
+  margin: 13px 0;
+  background: var(--gold);
+}
+.brand-seal span {
+  font-size: 0.75rem;
+  letter-spacing: 0.42em;
+}
+.brand-seal strong {
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+.brand-seal small {
+  font-family: Batang, serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
 }
 .designer-card h2 {
   font-size: 2.1rem;
@@ -459,6 +484,48 @@ p {
 }
 
 /* Collection */
+.collection-section-head {
+  max-width: 720px;
+  margin-bottom: 46px;
+}
+.collection-section-head .section-title {
+  margin-bottom: 18px;
+}
+.photo-grid {
+  display: grid;
+  gap: 28px;
+  align-items: start;
+}
+.photo-grid--duo,
+.photo-grid--archive {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.photo-grid--artwear {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.photo-card {
+  min-width: 0;
+  margin: 0;
+  background: #ebe7dd;
+}
+.photo-card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.photo-card figcaption {
+  padding: 18px 20px;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--muted);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.photo-grid--archive .photo-card:last-child {
+  align-self: center;
+}
 .collection-grid {
   display: grid;
   grid-template-columns: 1.08fr 0.92fr;
@@ -471,6 +538,16 @@ p {
 }
 .collection-card:first-child {
   grid-row: span 2;
+}
+.collection-grid--tees {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.collection-grid--tees .collection-card:first-child {
+  grid-row: auto;
+}
+.collection-grid--tees .collection-card img,
+.collection-grid--tees .collection-card .artwork-image {
+  min-height: 620px;
 }
 .collection-card img,
 .collection-card .artwork-image {
@@ -745,6 +822,15 @@ p {
   .collection-grid {
     grid-template-columns: 1fr;
   }
+  .photo-grid--duo,
+  .photo-grid--archive,
+  .photo-grid--artwear,
+  .collection-grid--tees {
+    grid-template-columns: 1fr;
+  }
+  .photo-card img {
+    max-height: none;
+  }
   .collection-card:first-child {
     grid-row: auto;
   }
@@ -765,6 +851,12 @@ p {
   .copyright {
     flex-direction: column;
     gap: 8px;
+  }
+}
+
+@media (min-width: 851px) and (max-width: 1100px) {
+  .photo-grid--artwear {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
